@@ -25,11 +25,14 @@ jobs:
 
     - name: Extract version from pom.xml
       id: extract_version
-      run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
+      run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> "$GITHUB_ENV"
 
     - name: Extract artifactId from pom.xml
       id: extract_artifact_id
-      run: echo "ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> $GITHUB_ENV
+      run: echo "ARTIFACT_ID=$(mvn help:evaluate -Dexpression=project.artifactId -q -DforceStdout)" >> "$GITHUB_ENV"
+
+    - name: Echo target name
+      run: echo ${{ env.ARTIFACT_ID }}-${{ env.VERSION }}.jar
 
     - name: Create Release
       id: create_release
@@ -48,6 +51,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: target/${{ env.ARTIFACT_ID }}-${{ env.VERSION }}.jar
+        asset_path: ./target/${{ env.ARTIFACT_ID }}-${{ env.VERSION }}.jar
         asset_name: ${{ env.ARTIFACT_ID }}-${{ env.VERSION }}.jar
         asset_content_type: application/java-archive
