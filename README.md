@@ -1,7 +1,45 @@
-# neo4j-extensions
+# neo4j engineernick-util
 
+Some utility fucntions for `neo4j`
 
-## Instructions used to Build this Repo
+Currently functions are on the namespace `engineernick.` but I will shorten that
+in a future release.
+
+See [releases](https://github.com/thehappycheese/neo4j-extensions/releases)
+
+## Example Usage - `datemin` and `datemax` functions
+
+Easy to return the first or last of two dates, gracefully ignoring `null`:
+
+```cypher
+// Minimum
+RETURN engineernick.datemin( date('2023-01-01'), date('2022-01-01') )
+
+// >> 2022-01-01
+```
+
+```cypher
+// Maximum
+RETURN engineernick.datemax( date('2023-01-01'), date('2022-01-01') )
+
+// >> 2023-01-01
+```
+
+```cypher
+// Ignore one null
+RETURN engineernick.datemin( date('2023-01-01'), null )
+
+// >> 2023-01-01
+```
+
+```cypher
+// Ignore both null
+RETURN engineernick.datemin( null, null )
+
+// >> null
+```
+
+## Process followed to Create this Repo
 
 1. Read the [guide on neoj4 docs](https://neo4j.com/docs/java-reference/current/extending-neo4j/functions/)
 
