@@ -5,7 +5,7 @@
     <groupId>org.neo4j.example</groupId>
     <artifactId>engineernick-util</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>v0.1.0</version>
     <name>engineernick-util</name>
     <url>http://maven.apache.org</url>
     <properties>
