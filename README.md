@@ -1,44 +1,42 @@
 # neo4j engineernick-util
 
-Some utility fucntions for `neo4j`
+Some utility functions for `neo4j`
 
 See [releases](https://github.com/thehappycheese/neo4j-extensions/releases)
 
-Known issues to be addressed:
+`neo4j` throws a tantrum if you try to use java's method overloading or generics
+to create a single `ndt.min()` function that works for all date types. Therefore
+This module provides the following suffixed date comparison functions.
 
-- [ ] functions are on the namespace `engineernick.` which is a bit too long.
-- [ ] functions are only tested on `LocalDate` but this should work for all date types that are compareable.
+- `ndt.min_date(dateA, dateB)`
+- `ndt.min_datetime(dateA, dateB)`
+- `ndt.min_localdatetime(dateA, dateB)`
+- `ndt.max_date(dateA, dateB)`
+- `ndt.max_datetime(dateA, dateB)`
+- `ndt.max_localdatetime(dateA, dateB)`
+
+Note that
+
+- All functions ignore `null` values;
+  - if one of the arguments is `null`, the other argument is returned
+  - if both arguments are `null`, then null is returned
+- Argument types must match; e.g. a `localdatetime` cannot be compared with a
+  `date` even though that would seem ok.
+
+## package name `ndt.`
+
+The package name is like the pandas date-accessor module `Series(...).dt.year()`
+but I added an `n` to the start to get `ndt`
 
 ## Example Usage - `datemin` and `datemax` functions
 
-Easy to return the first or last of two dates, gracefully ignoring `null`:
+Easily return the first of two dates:
 
 ```cypher
 // Minimum
-RETURN engineernick.datemin( date('2023-01-01'), date('2022-01-01') )
+RETURN ndt.min_date( date('2023-01-01'), date('2022-01-01') )
 
 // >> 2022-01-01
-```
-
-```cypher
-// Maximum
-RETURN engineernick.datemax( date('2023-01-01'), date('2022-01-01') )
-
-// >> 2023-01-01
-```
-
-```cypher
-// Ignore one null
-RETURN engineernick.datemin( date('2023-01-01'), null )
-
-// >> 2023-01-01
-```
-
-```cypher
-// Ignore both null
-RETURN engineernick.datemin( null, null )
-
-// >> null
 ```
 
 ## Process followed to Create this Repo

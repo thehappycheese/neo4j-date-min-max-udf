@@ -14,8 +14,9 @@ public class DateMinMax {
     @UserFunction
     @Description("engineernick.datemax(dateA, dateB) - returns later of two inputs, or the first non-null input, or null if both are null.")
     public LocalDate datemax(
-            @Name("dateA") LocalDate dateA,
-            @Name("dateB") LocalDate dateB) {
+        @Name("dateA") LocalDate dateA,
+        @Name("dateB") LocalDate dateB
+    ) {
         if (dateA == null) {
             return (dateB == null) ? null : dateB;
         }
@@ -28,8 +29,9 @@ public class DateMinMax {
     @UserFunction
     @Description("engineernick.datemin(dateA, dateB) - returns earlier of two inputs, or the first non-null input, or null if both are null.")
     public LocalDate datemin(
-            @Name("dateA") LocalDate dateA,
-            @Name("dateB") LocalDate dateB) {
+        @Name("dateA") LocalDate dateA,
+        @Name("dateB") LocalDate dateB
+    ) {
         if (dateA == null) {
             return (dateB == null) ? null : dateB;
         }
@@ -38,4 +40,5 @@ public class DateMinMax {
         }
         return dateA.isBefore(dateB) ? dateA : dateB;
     }
+
 }
