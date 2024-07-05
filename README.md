@@ -1,14 +1,22 @@
-# Neo4j Date Min Max User Defined Functions
+# Neo4j Date Min Max User Defined Functions <!-- omit in toc -->
 
 ![Release](https://github.com/thehappycheese/neo4j-extensions/actions/workflows/release.yml/badge.svg)](https://github.com/thehappycheese/neo4j-extensions/actions/workflows/release.yml)
 
 Date Min / Max user defined functions for `neo4j` because I was frustrated with
-the built in solutions. This extension still doesn't satisfy me completely
-because the solution ended up being a bit naff, but maybe it can be improved,
-and I learned the process in case I need to create more complex user defined
-functions in the future.
+the built in solutions.
 
-See [releases](https://github.com/thehappycheese/neo4j-extensions/releases)
+Sadly I am still unhappy with this solution because generics didn't work (see
+explanation further below). Perhaps it can be improved?
+
+- [1. Functions](#1-functions)
+- [2. Package name `ndt.`](#2-package-name-ndt)
+- [3. Method names](#3-method-names)
+- [4. Installation](#4-installation)
+- [5. Example usage](#5-example-usage)
+- [6. Process followed to create this Repo](#6-process-followed-to-create-this-repo)
+
+
+## 1. Functions
 
 - `ndt.min_date(dateA, dateB)`
 - `ndt.min_datetime(dateA, dateB)`
@@ -25,12 +33,12 @@ Note that
 - Argument types must match; e.g. a `localdatetime` cannot be compared with a
   `date` even though that would seem ok.
 
-## package name `ndt.`
+## 2. Package name `ndt.`
 
 The package name is like the pandas date-accessor module `Series(...).dt.year()`
 but I added an `n` to the start to get `ndt`
 
-## method names
+## 3. Method names
 
 `neo4j` throws a tantrum if you try to use java's method overloading or generics
 to create a single `ndt.min()` function that works for all date types. Therefore
@@ -48,7 +56,14 @@ performant under the hood in my opinion. At least it works for all types.
 RETURN apoc.coll.min([dateA, dateB])
 ```
 
-## Example Usage - `datemin` and `datemax` functions
+## 4. Installation
+
+Download the latest artifact from the
+[releases](https://github.com/thehappycheese/neo4j-extensions/releases) page and
+apparently all you have to do is put it in the plugins folder of your neo4j
+deployment. Beware that I have not tested this process on an actual server yet.
+
+## 5. Example usage
 
 Easily return the first of two dates:
 
@@ -59,7 +74,7 @@ RETURN ndt.min_date( date('2023-01-01'), date('2022-01-01') )
 // >> 2022-01-01
 ```
 
-## Process followed to Create this Repo
+## 6. Process followed to create this Repo
 
 1. Read the [guide on neoj4 docs](https://neo4j.com/docs/java-reference/current/extending-neo4j/functions/)
 
