@@ -9,11 +9,12 @@ Sadly I am still unhappy with this solution because generics didn't work (see
 explanation further below). Perhaps it can be improved?
 
 - [1. Functions](#1-functions)
-- [2. Package name `ndt.`](#2-package-name-ndt)
-- [3. Method names](#3-method-names)
-- [4. Installation](#4-installation)
-- [5. Example usage](#5-example-usage)
-- [6. Process followed to create this Repo](#6-process-followed-to-create-this-repo)
+- [2. Names](#2-names)
+  - [2.1. Why such long method names?](#21-why-such-long-method-names)
+  - [2.2. What is the package name `ndt.`?](#22-what-is-the-package-name-ndt)
+- [3. Installation](#3-installation)
+- [4. Example usage](#4-example-usage)
+- [5. Process followed to create this Repo](#5-process-followed-to-create-this-repo)
 
 
 ## 1. Functions
@@ -29,16 +30,13 @@ Note that
 
 - All functions ignore `null` values;
   - if one of the arguments is `null`, the other argument is returned
-  - if both arguments are `null`, then null is returned
+  - if both arguments are `null`, then `null` is returned
 - Argument types must match; e.g. a `localdatetime` cannot be compared with a
   `date` even though that would seem ok.
 
-## 2. Package name `ndt.`
+## 2. Names
 
-The package name is like the pandas date-accessor module `Series(...).dt.year()`
-but I added an `n` to the start to get `ndt`
-
-## 3. Method names
+### 2.1. Why such long method names?
 
 `neo4j` throws a tantrum if you try to use java's method overloading or generics
 to create a single `ndt.min()` function that works for all date types. Therefore
@@ -56,14 +54,19 @@ performant under the hood in my opinion. At least it works for all types.
 RETURN apoc.coll.min([dateA, dateB])
 ```
 
-## 4. Installation
+### 2.2. What is the package name `ndt.`?
+
+The package name is like the pandas date-accessor module `Series(...).dt.year()`
+but I added an `n` to the start to get `ndt`
+
+## 3. Installation
 
 Download the latest artifact from the
 [releases](https://github.com/thehappycheese/neo4j-extensions/releases) page and
 apparently all you have to do is put it in the plugins folder of your neo4j
 deployment. Beware that I have not tested this process on an actual server yet.
 
-## 5. Example usage
+## 4. Example usage
 
 Easily return the first of two dates:
 
@@ -74,7 +77,7 @@ RETURN ndt.min_date( date('2023-01-01'), date('2022-01-01') )
 // >> 2022-01-01
 ```
 
-## 6. Process followed to create this Repo
+## 5. Process followed to create this Repo
 
 1. Read the [guide on neoj4 docs](https://neo4j.com/docs/java-reference/current/extending-neo4j/functions/)
 
