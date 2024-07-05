@@ -1,6 +1,12 @@
-# neo4j engineernick-util
+# Neo4j Date Min Max User Defined Functions
 
-Some utility functions for `neo4j`
+![Release](https://github.com/thehappycheese/neo4j-extensions/actions/workflows/release.yml/badge.svg)](https://github.com/thehappycheese/neo4j-extensions/actions/workflows/release.yml)
+
+Date Min / Max user defined functions for `neo4j` because I was frustrated with
+the built in solutions. This extension still doesn't satisfy me completely
+because the solution ended up being a bit naff, but maybe it can be improved,
+and I learned the process in case I need to create more complex user defined
+functions in the future.
 
 See [releases](https://github.com/thehappycheese/neo4j-extensions/releases)
 
@@ -57,7 +63,7 @@ RETURN ndt.min_date( date('2023-01-01'), date('2022-01-01') )
 
 1. Read the [guide on neoj4 docs](https://neo4j.com/docs/java-reference/current/extending-neo4j/functions/)
 
-2. Run some magic setup hallucinated by gpt
+2. Run some occult looking java / maven setup command hallucinated by ChatGPT
 
 ```bash
 mvn archetype:generate -DgroupId=org.neo4j.example -DartifactId=procedure-template -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
