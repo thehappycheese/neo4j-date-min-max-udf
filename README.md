@@ -19,6 +19,8 @@ explanation further below). Perhaps it can be improved?
 
 ## 1. Functions
 
+This extensions adds the following functions that can be used in cypher:
+
 - `ndt.min_date(dateA, dateB)`
 - `ndt.min_datetime(dateA, dateB)`
 - `ndt.min_localdatetime(dateA, dateB)`
