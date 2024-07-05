@@ -1,6 +1,6 @@
 # Neo4j Date Min Max User Defined Functions <!-- omit in toc -->
 
-![Release](https://github.com/thehappycheese/neo4j-extensions/actions/workflows/release.yml/badge.svg)](https://github.com/thehappycheese/neo4j-extensions/actions/workflows/release.yml)
+[![Release](https://github.com/thehappycheese/neo4j-extensions/actions/workflows/release.yml/badge.svg)](https://github.com/thehappycheese/neo4j-extensions/actions/workflows/release.yml)
 
 Date Min / Max user defined functions for `neo4j` because I was frustrated with
 the built in solutions.
