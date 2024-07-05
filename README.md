@@ -4,10 +4,6 @@ Some utility functions for `neo4j`
 
 See [releases](https://github.com/thehappycheese/neo4j-extensions/releases)
 
-`neo4j` throws a tantrum if you try to use java's method overloading or generics
-to create a single `ndt.min()` function that works for all date types. Therefore
-This module provides the following suffixed date comparison functions.
-
 - `ndt.min_date(dateA, dateB)`
 - `ndt.min_datetime(dateA, dateB)`
 - `ndt.min_localdatetime(dateA, dateB)`
@@ -27,6 +23,24 @@ Note that
 
 The package name is like the pandas date-accessor module `Series(...).dt.year()`
 but I added an `n` to the start to get `ndt`
+
+## method names
+
+`neo4j` throws a tantrum if you try to use java's method overloading or generics
+to create a single `ndt.min()` function that works for all date types. Therefore
+This module provides suffixed date comparison functions.
+
+These long method names like `ndt.max_localdatetime` are obviously deeply
+unsatisfactory, and are likely why neo4j does not provide this functionality out
+of the box.
+
+Note that the alternative to this way of doing this using built-in functions as
+shown below. For me this is also highly unsatisfactory as it is unlikely to be
+performant under the hood in my opinion. At least it works for all types.
+
+```cypher
+RETURN apoc.coll.min([dateA, dateB])
+```
 
 ## Example Usage - `datemin` and `datemax` functions
 
