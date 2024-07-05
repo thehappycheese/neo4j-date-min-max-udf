@@ -2,10 +2,12 @@
 
 Some utility fucntions for `neo4j`
 
-Currently functions are on the namespace `engineernick.` but I will shorten that
-in a future release.
-
 See [releases](https://github.com/thehappycheese/neo4j-extensions/releases)
+
+Known issues to be addressed:
+
+- [ ] functions are on the namespace `engineernick.` which is a bit too long.
+- [ ] functions are only tested on `LocalDate` but this should work for all date types that are compareable.
 
 ## Example Usage - `datemin` and `datemax` functions
 
