@@ -5,6 +5,8 @@
 Date Min / Max user defined functions for `neo4j` because I was frustrated with
 the built in solutions.
 
+Also, in future, I can add other functions like a date interval overlap test.
+
 Sadly I am still unhappy with this solution because generics didn't work (see
 explanation further below). Perhaps it can be improved?
 
@@ -35,6 +37,12 @@ Note that
   - if both arguments are `null`, then `null` is returned
 - Argument types must match; e.g. a `localdatetime` cannot be compared with a
   `date` even though that would seem ok.
+
+In future I want to add date interval functions;
+
+- [ ] `ndt.touch_datetime(dateFrom1, dateTo1, dateFrom2, dateTo2)`
+- [ ] `ndt.within_datetime(dateFrom1, dateTo1, dateFrom2, dateTo2)`
+- etc.
 
 ## 2. Names
 
